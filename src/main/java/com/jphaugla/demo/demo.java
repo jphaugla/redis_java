@@ -16,9 +16,11 @@ public class demo {
       jedis.lpush("numberList", nextInteger);
     }
     System.out.println("Wrote to Redis");
+    jedis.close();
     //  read from Redis in reverse order and print out
-
-      List<String> numberList = jedis.lrange("numberList", -100, -1);
+      Jedis jedis2 = new Jedis("127.0.0.1", 6379);
+      List<String> numberList = jedis2.lrange("numberList", -100, -1);
       System.out.println(Arrays.toString(numberList.toArray()));
+      jedis2.close();
   }
 }
